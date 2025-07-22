@@ -22,11 +22,11 @@ try:
         produkte = json.load(datei)
     
     for produkt in produkte.values():
-        anzahl_produkte += produkt["anzahl"]
+        anzahl_produkte += int(produkt["anzahl"])
 
         if ist_abgelaufen(produkt["ablaufdatum"]):
             produkt["abgelaufen"] = True
-            anzahl_abgelaufene_produkte += produkt["anzahl"]
+            anzahl_abgelaufene_produkte += int(produkt["anzahl"])
 
 # Falls noch keine Daten gespeichert wurden:
 except FileNotFoundError:
