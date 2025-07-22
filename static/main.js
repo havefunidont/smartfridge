@@ -28,6 +28,14 @@ async function startScanner() {
     return;
   }
 
+  Html5Qrcode.getCameras().then(devices => {
+  devices.forEach((device, index) => {
+    alert("Kamera " + index + ": " + (device.label || "Kein Name verfügbar"));
+  });
+  }).catch(err => {
+    alert("Fehler beim Kamerazugriff: " + err);
+  });
+
   // Wähle Kamera 1 falls verfügbar (Rückkamera am Smartphone)
   if (devices.length > 1) {
     const cameraId = devices[1].id;
