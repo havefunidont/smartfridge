@@ -1,21 +1,21 @@
 {
   "0": {
     "name": "Milch 3,5%",
-    "anzahl": 2,
+    "anzahl": "2",
     "barcode": "4001234567890",
     "ablaufdatum": "2025-07-21",
     "abgelaufen": false
   },
   "1": {
     "name": "Joghurt Erdbeere",
-    "anzahl": 4,
+    "anzahl": "4",
     "barcode": "4009876543210",
     "ablaufdatum": "2025-07-18",
     "abgelaufen": true
   },
   "2": {
     "name": "Butter",
-    "anzahl": 1,
+    "anzahl": "1",
     "barcode": "4001122334455",
     "ablaufdatum": "2025-07-25",
     "abgelaufen": false

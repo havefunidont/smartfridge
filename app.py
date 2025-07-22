@@ -20,21 +20,22 @@ anzahl_abgelaufene_produkte = 0
 try:
     with open('produkte.json', 'r') as datei:
         produkte = json.load(datei)
-    
+
+    aktuelle_id = 0
     for produkt in produkte.values():
+        aktuelle_id += 1
         anzahl_produkte += int(produkt["anzahl"])
 
         if ist_abgelaufen(produkt["ablaufdatum"]):
             produkt["abgelaufen"] = True
             anzahl_abgelaufene_produkte += int(produkt["anzahl"])
+    
 
 # Falls noch keine Daten gespeichert wurden:
 except FileNotFoundError:
     # Falls die Datei nicht existiert, erstelle ein leeres Dictionary und setze die Produktanzahl auf 0:
     produkte = {}
-
-# Einzigartige ID für jedes unterschiedliche Produkt:
-aktuelle_id = 0
+    aktuelle_id = 0
  
 # Findet zu einem Barcode den passenden Produktnamen und gibt ihn zurück:
 def produktname_finden(barcode):
@@ -71,7 +72,7 @@ def produkt_hinzufuegen():
     }
 
     # Dem Produkt wird eine ID zugewiesen:
-    produkte[aktuelle_id] = produkt
+    produkte[str(aktuelle_id)] = produkt
     aktuelle_id += 1
     
     # Gesamtprodktanzahl und Anzahl abgelaufener Produkte aktualisieren:
