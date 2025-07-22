@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8"/>
+    <title>SmartFridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--Lade die Schriftart Inter-->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+    <!--Lade Icons bzw. Symbole-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!--Lade die Stylesheets für das Design-->
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+    <!--Lade die Skripte-->
+    <script src="https://unpkg.com/html5-qrcode" defer></script>
+    <script src="{{url_for('static', filename='main.js')}}" defer></script>
+    <script src="{{url_for('static', filename='popup.js')}}" defer></script>
+</head>
+<body>
+    <div class="navigationsleiste">
+        <i class="fas fa-scanner"></i>
+        <b><i class="fa-solid fa-snowflake"></i> SmartFridge</b>
+    </div>
+
+    <div class="kachel-layout">
+        <div class="kachel">
+            <div class="titel">Im Kühlschrank</div>
+            <div class="daten" id="anzahl_produkte">keine Produkte</div>
+        </div>
+        <div class="kachel">
+            <div class="titel">Abgelaufen</div>
+            <div class="daten" id="anzahl_abgelaufene_produkte">keine Produkte</div>
+        </div>
+        <!--<div class="kachel">
+            <div class="titel">Läuft bald ab</div>
+            <div class="daten">3</div>
+        </div>-->
+        <div class="kachel">
+            <div class="titel">Produkt hinzufügen</div>
+            <div class="daten">Barcode scannen</div>
+            <button onclick="popupOeffnen()">+</button>
+        </div>
+    <!--Popup-->
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <div class="titel">Produkt hinzufügen</div>
+            <div id="qr-reader"></div>
+            <div id="qr-reader-results"></div>
+            <input type="number" placeholder="Anzahl eingeben..." id="anzahl-eingabe">
+            <input type="date" id="mhd-eingabe">
+            <button onclick="popupSchliessen()">Schließen</button>
+            <button onclick="produktHinzufuegen()">Hinzufügen</button>
+        </div>
+    </div>
+    <script>
+        const gespeicherteProdukte = {{ produkte | tojson | safe }};
+    </script>
+    </body>
+</html>
