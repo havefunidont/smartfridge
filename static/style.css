@@ -141,7 +141,7 @@ button:hover {
 
 #qr-reader {
     width: 20rem;
-    height: 15rem;
+    height: 10rem;
     overflow: hidden;
     margin: auto;
     background-color: var(--hintergrundfarbe);
