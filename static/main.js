@@ -4,7 +4,9 @@ let zuletztEingetrageneAnzahl = null;
 
 async function startScanner() {
   const resultContainer = document.getElementById("qr-reader-results");
-  resultContainer.innerHTML = ""; // Reset
+  resultContainer.innerHTML = "";
+
+  await navigator.mediaDevices.getUserMedia({ video: true }); // Vorbereitungszugriff
 
   if (!html5QrCode) {
     html5QrCode = new Html5Qrcode("qr-reader");
@@ -28,27 +30,22 @@ async function startScanner() {
     return;
   }
 
-  let cameraId;
-  
-  // Wähle Kamera 1 falls verfügbar (Rückkamera am Smartphone)
-  if (devices.length > 1) {
-    cameraId = devices[1].id;
-  }
-  // Wähle sonst die einzig verfügbare Kamera:
-  else {
-    cameraId = devices[0].id;
-  }
+  // Ausgabe zum Debuggen:
+  devices.forEach((device, index) => {
+    alert(`Kamera ${index}: ${device.label || "Kein Name verfügbar"}`);
+  });
+
+  let cameraId = devices.length > 1 ? devices[1].id : devices[0].id;
 
   html5QrCode.start(
     { deviceId: { exact: cameraId } },
     config,
-    (decodedText) => {
+    decodedText => {
       console.log("Scan erfolgreich:", decodedText);
-      const ergebnisContainer = document.getElementById("qr-reader-results");
-      ergebnisContainer.innerHTML = `Barcode: ${decodedText}`
+      resultContainer.innerHTML = `Barcode: ${decodedText}`;
       gescannterBarcode = decodedText;
     },
-    (error) => {
+    error => {
       if (!error.includes("No MultiFormat Readers")) {
         console.log("Scan-Fehler: ", error);
       }
