@@ -137,14 +137,13 @@ button:hover {
     left: 50%;*/
     width: 100vw;
     height: 100vh;
-    transform: translate(-50%, -50%);
+    /*transform: translate(-50%, -50%);*/
     padding: 1rem 1rem;
 }
 
 #qr-reader {
     width: 20rem;
-    height: 15rem;
-    max-height: 100px;
+    height: 10rem;
     overflow: hidden;
     margin: auto;
     background-color: var(--hintergrundfarbe);
