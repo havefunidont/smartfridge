@@ -28,7 +28,14 @@ async function startScanner() {
     return;
   }
 
-  const cameraId = devices[0].id; // Nimm erste Kamera
+  // Wähle Kamera 1 falls verfügbar (Rückkamera am Smartphone)
+  if (devices.length > 1) {
+    const cameraId = devices[1].id;
+  }
+  // Wähle sonst die einzig verfügbare Kamera:
+  else {
+    const cameraId = devices[0].id;
+  }
 
   html5QrCode.start(
     { deviceId: { exact: cameraId } },
