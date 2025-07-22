@@ -1,0 +1,156 @@
+:root {
+    --akzentfarbe: #4a90e2;
+    --hintergrundfarbe: #e9e9e9;
+    --vordergrundfarbe: #fff;
+
+    /* Hervorhebungsfarben je nach Ablaufdatum */
+    --hintergrund-gruen: #d4edda; /* Grün für Produkte, die noch lange haltbar sind */
+    --text-gruen: #155724;
+    --hintergrund-gelb: #fff3cd; /* Gelb für Produkte, die bald ablaufen */
+    --text-gelb: #856404;
+    --hintergrund-rot: #f8d7da; /* Rot für Produkte, die abgelaufen sind */
+    --text-rot: #721c24;
+
+    /* Schriftgrößen */
+    --schriftgroesse-seitentitel: 1.5rem;
+    --schriftgroesse-titel: 1.05rem;
+    --schriftgroesse-text: .9rem;
+}
+
+body {
+    margin: 0 auto;
+    background-color: var(--hintergrundfarbe);
+}
+
+body * {
+    font-family: 'Inter';
+}
+
+.navigationsleiste {
+    display: flex;
+    font-size: var(--schriftgroesse-seitentitel);
+    background-color: var(--akzentfarbe);
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    justify-content: center;
+}
+
+.navigationsleiste * {
+    color: var(--vordergrundfarbe);
+    text-align: center;
+}
+
+button {
+    font-size: var(--schriftgroesse-text);
+    padding: .5rem;
+    background-color: var(--akzentfarbe);
+    color: var(--vordergrundfarbe);
+    text-align: center;
+    width: 100%;
+    border: 0;
+    transition: transform 0.2s ease, background-color 0.2s ease-in-out;
+}
+
+input {
+    font-size: var(--schriftgroesse-text);
+    padding: .5rem;
+    background-color: var(--hintergrundfarbe);
+    border: 0;
+    width: 50vw;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #3a7bbf;
+    transform: scale(1.05);
+}
+
+.ablaufdatum {
+    font-size: var(--schriftgroesse-text);
+    padding: .5rem;
+    background-color: var(--hintergrund-gruen);
+    color: var(--text-gruen);
+    text-align: center;
+}
+
+.ablaufdatum.ok {
+    background-color: var(--hintergrund-gruen);
+    color: var(--text-gruen);
+}
+
+.ablaufdatum.bald {
+    background-color: var(--hintergrund-gelb);
+    color: var(--text-gelb);
+}
+
+.ablaufdatum.abgelaufen {
+    background-color: var(--hintergrund-rot);
+    color: var(--text-rot);
+}
+
+.kachel-layout {
+    margin: .5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: .7rem;
+}
+
+.kachel {
+    padding: 1rem 1rem;
+    background-color: var(--vordergrundfarbe);
+    transition: all 0.2s ease;
+}
+
+.kachel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 4rem #999;
+}
+
+.kachel .titel, .kachel .daten, .popup * {
+    margin-bottom: .5rem;
+}
+
+.titel {
+    font-size: var(--schriftgroesse-titel);
+    font-weight: bold;
+}
+
+.kachel .daten {
+    font-size: var(--schriftgroesse-text);
+    color: #555;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+    background-color: var(--vordergrundfarbe);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem 1rem;
+}
+
+#qr-reader {
+    width: 20rem;
+    height: 15rem;
+    max-height: 100px;
+    overflow: hidden;
+    margin: auto;
+    background-color: var(--hintergrundfarbe);
+}
+
+/* Für Smartphones anpassen */
+@media (max-width: 700px) {
+    html {
+        font-size: 17px; /* Verändert den Wert von rem => responsive Größe je nach Bildschirmgröße */
+    }
+}
