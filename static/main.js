@@ -3,7 +3,6 @@ let gescannterBarcode = null;
 let zuletztEingetrageneAnzahl = null;
 
 async function startScanner() {
-  await navigator.mediaDevices.getUserMedia({video: true});
   const resultContainer = document.getElementById("qr-reader-results");
   resultContainer.innerHTML = ""; // Reset
 
