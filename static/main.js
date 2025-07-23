@@ -8,8 +8,6 @@ async function startScanner() {
   } catch (err) {
     console.error("Kamera-Zugriff fehlgeschlagen:", err);
   }
-  const resultContainer = document.getElementById("qr-reader-results");
-  resultContainer.innerHTML = ""; // Reset
 
   if (!html5QrCode) {
     html5QrCode = new Html5Qrcode("qr-reader");
@@ -222,6 +220,12 @@ async function ladeAbgelaufeneProduktanzahl() {
 // Zu Beginn die Produktanzahl laden:
 ladeProduktanzahl();
 ladeAbgelaufeneProduktanzahl();
+
+window.addEventListener("beforeunload", () => {
+  if (html5QrCode && html5QrCode.isScanning) {
+    html5QrCode.stop().then(() => html5QrCode.clear());
+  }
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   if (typeof gespeicherteProdukte !== 'undefined') {
