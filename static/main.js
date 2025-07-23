@@ -11,6 +11,10 @@ async function startScanner() {
     html5QrCode = new Html5Qrcode("qr-reader");
   }
 
+  navigator.mediaDevices.enumerateDevices().then(devices => {
+  console.log("Gefundene Geräte:", devices);
+  });
+
   const config = {
     fps: 10,
     qrbox: 250,

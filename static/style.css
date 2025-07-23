@@ -145,8 +145,9 @@ button:hover {
 }
 
 #qr-reader {
-    width: 20rem;
-    height: 20rem;
+    width: 100%;
+    height: 300px;
+    background-color: black;
     overflow: hidden;
     margin: auto;
 }
