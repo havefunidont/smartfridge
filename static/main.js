@@ -3,12 +3,21 @@ let gescannterBarcode = null;
 let zuletztEingetrageneAnzahl = null;
 
 async function startScanner() {
-  await navigator.mediaDevices.getUserMedia({ video: true});
+  try {
+    await navigator.mediaDevices.getUserMedia({ video: true });
+  } catch (err) {
+    console.error("Kamera-Zugriff fehlgeschlagen:", err);
+  }
   const resultContainer = document.getElementById("qr-reader-results");
   resultContainer.innerHTML = ""; // Reset
 
   if (!html5QrCode) {
     html5QrCode = new Html5Qrcode("qr-reader");
+  }
+
+  if (html5QrCode.isScanning) {
+    await html5QrCode.stop();
+    html5QrCode.clear();
   }
 
   navigator.mediaDevices.enumerateDevices().then(devices => {
