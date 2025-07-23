@@ -58,7 +58,13 @@ def produkt_hinzufuegen():
     daten = request.get_json()
     
     barcode = daten["barcode"]
-    name = produktname_finden(barcode)
+
+    # Wenn der Name manuell eingegeben wurde, behalte ihn, sonst such den passenden zum Barcode:
+    if daten["name"]:
+        name = daten["name"]
+    else:
+        name = produktname_finden(barcode)
+
     ablaufdatum = daten["ablaufdatum"]
     anzahl = int(daten["anzahl"])
     abgelaufen = ist_abgelaufen(ablaufdatum)

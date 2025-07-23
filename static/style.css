@@ -120,6 +120,11 @@ button:hover {
     color: #555;
 }
 
+.untertitel {
+    color: #555;
+    font-size: var(--schriftgroesse-text);
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -144,7 +149,6 @@ button:hover {
     height: 20rem;
     overflow: hidden;
     margin: auto;
-    background-color: var(--hintergrundfarbe);
 }
 
 /* Für Smartphones anpassen */

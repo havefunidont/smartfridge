@@ -44,8 +44,7 @@ async function startScanner() {
     config,
     (decodedText) => {
       console.log("Scan erfolgreich:", decodedText);
-      const ergebnisContainer = document.getElementById("qr-reader-results");
-      ergebnisContainer.innerHTML = `Barcode: ${decodedText}`
+      document.getElementById("name-eingabe").value = decodedText;
       gescannterBarcode = decodedText;
     },
     (error) => {
@@ -59,13 +58,14 @@ async function startScanner() {
 // Sendet Produktdaten ans Backend:
 function datenSenden(barcode) {
   // Sammle die benötigten Informationen:
+  var nameEingabe = document.getElementById('name-eingabe').value;
   var anzahlEingabe = document.getElementById('anzahl-eingabe').value;
   var ablaufdatumEingabe = document.getElementById('mhd-eingabe').value;
 
   fetch('/produkt_hinzufuegen', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({barcode: barcode, anzahl: anzahlEingabe, ablaufdatum: ablaufdatumEingabe})
+    body: JSON.stringify({name: nameEingabe, anzahl: anzahlEingabe, barcode: barcode, ablaufdatum: ablaufdatumEingabe})
   })
   .then (response => response.json())
   .then (result => {
