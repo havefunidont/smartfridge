@@ -107,15 +107,19 @@ function produktDivHinzufügen(produkt) {
   
   var ablaufdatum_div = "";
 
-  // Produkt ist abgelaufen:
+  if (tage == -1) {
+    ablaufdatum_div = `<div class="ablaufdatum abgelaufen"> Seit einem Tag abgelaufen`;
+  }
   if (tage < 0) {
-    ablaufdatum_div = `<div class="ablaufdatum abgelaufen"> Seit ${tage*-1}T abgelaufen`;
+    ablaufdatum_div = `<div class="ablaufdatum abgelaufen"> Seit ${tage*-1} Tagen abgelaufen`;
   }
   else if (tage == 0) {
     ablaufdatum_div = `<div class="ablaufdatum bald"> Läuft heute ab`;
   }
+  else if (tage == 1) {
+    ablaufdatum_div = `<div class="ablaufdatum bald"> Läuft morgen ab`;
   else {
-    ablaufdatum_div = `<div class="ablaufdatum ok"> Läuft in ${tage}T ab`;
+    ablaufdatum_div = `<div class="ablaufdatum ok"> Läuft in ${tage} Tagen ab`;
   }
 
   var anzahl_einheit;
